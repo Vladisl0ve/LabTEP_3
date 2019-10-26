@@ -10,6 +10,8 @@ public:
 	CTable(const CTable& pcOther);
 	CTable* pcClone();
 
+	CTable operator+(CTable& pcNewVal);
+
 	string sName;
 	int* piTable;
 	int iSize;

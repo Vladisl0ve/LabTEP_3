@@ -44,6 +44,24 @@ CTable* CTable::pcClone() {
 	return copy;
 }
 
+CTable CTable::operator+(CTable& pcNewVal)
+{
+	int newSize = pcNewVal.iSize + iSize;
+	int* piTableNew = new int[newSize];
+	for (int ii = 0; ii < iSize; ii++)
+	{
+		piTableNew[ii] = piTable[ii];
+	}
+	for (int ii = iSize; ii < newSize; ii++)
+	{
+		piTableNew[ii] = pcNewVal.piTable[ii];
+	}
+	//delete piTable;
+	piTable = piTableNew;
+	iSize = newSize;
+	return *this;
+}
+
 void CTable::vShowName()
 {
 	cout << "Name: " << sName << endl;
