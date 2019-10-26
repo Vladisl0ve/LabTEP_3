@@ -16,6 +16,7 @@ public:
 	int* piTable;
 	int iSize;
 
+
 	void vShowName();
 	void vShowSize();
 	void vSetName(string sName);
@@ -30,6 +31,4 @@ public:
 private:
 	int CONST_SIZE = 1;
 	string CONST_NAME = "Default";
-
-	
 };

@@ -54,9 +54,9 @@ CTable CTable::operator+(CTable& pcNewVal)
 	}
 	for (int ii = iSize; ii < newSize; ii++)
 	{
-		piTableNew[ii] = pcNewVal.piTable[ii];
+		piTableNew[ii] = pcNewVal.piTable[ii-iSize];
 	}
-	//delete piTable;
+	delete piTable;
 	piTable = piTableNew;
 	iSize = newSize;
 	return *this;
