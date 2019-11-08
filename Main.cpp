@@ -1,6 +1,12 @@
 #include <iostream>
 #include "CTable.h"
+#include <string>
 
+/*
+	Fix iOffer problem (check more details later)
+	Remove couts for testings
+
+*/
 int main() {
 
 	CTable c_tab_0, c_tab_1;
@@ -16,15 +22,16 @@ int main() {
 	{
 		c_tab_1.vSetValueAt(ii, ii + 51);
 	}
-
+	c_tab_0.vSetValueAt(0, 23);
+	c_tab_1.vSetValueAt(0, 23);
+	c_tab_0.vSetValueAt(1, 23);
+	c_tab_1.vSetValueAt(0, 23);
 	c_tab_0.vPrint();
 	c_tab_1.vPrint();
-	cout << "#########" << endl;
-
-	c_tab_0.operator+(c_tab_1);
 
 	cout << "#########" << endl;
-	c_tab_0.vPrint();
-	//c_tab_1.vPrint();
+	CTable c_tab_2 = c_tab_0.operator*(c_tab_1);
+
+	c_tab_2.vPrint();
 	system("pause");
 }

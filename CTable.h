@@ -10,7 +10,13 @@ public:
 	CTable(const CTable& pcOther);
 	CTable* pcClone();
 
+	string sPassword = "defaultPassword";
+
+	bool isGoodPassword(string& tmpStr);
+	bool setPassword(string& tmpStr);
+
 	CTable operator+(CTable& pcNewVal);
+	CTable operator*(CTable& pcNewVal);
 
 	string sName;
 	int* piTable;

@@ -1,4 +1,5 @@
 #include "CTable.h"
+#include <string>
 
 CTable::CTable()
 {
@@ -18,7 +19,12 @@ CTable::CTable(string s_Name, int iTableLen)
 CTable::CTable(const CTable& pcOther)
 {
 	sName = pcOther.sName + "_copy";
-	piTable = pcOther.piTable;
+	iSize = pcOther.iSize;
+	piTable = new int[pcOther.iSize];
+	for (int ii = 0; ii < iSize; ii++)
+	{
+		piTable[ii] = pcOther.piTable[ii];
+	}
 	cout << "Kopuj: " << sName << endl;
 }
 
@@ -71,11 +77,46 @@ CTable CTable::operator+(CTable& pcNewVal)
 	}
 	for (int ii = iSize; ii < newSize; ii++)
 	{
-		piTableNew[ii] = pcNewVal.piTable[ii-iSize];
+		piTableNew[ii] = pcNewVal.piTable[ii - iSize];
 	}
 	delete piTable;
 	piTable = piTableNew;
 	iSize = newSize;
+	sPassword = sPassword + pcNewVal.sPassword;
+	return *this;
+}
+
+CTable CTable::operator*(CTable& pcNewVal)
+{
+	int iCounter = 0;
+	for (int ii = 0; ii < this->iSize; ii++)
+	{
+		for (int iz = 0; iz < pcNewVal.iSize; iz++)
+		{
+			if (piTable[ii] == pcNewVal.piTable[iz])
+			{
+				iCounter++;
+			}
+		}
+	}
+	int* piTableTmp = new int[iCounter];
+	int iFlag = 0;
+	for (int ii = 0; ii < this->iSize; ii++)
+	{
+		for (int iz = 0; iz < pcNewVal.iSize; iz++)
+		{
+			if (piTable[ii] == pcNewVal.piTable[iz])
+			{
+				piTableTmp[iFlag++] = piTable[ii];
+			}
+		}
+	}
+	delete piTable;
+	if (iCounter != 0)
+		piTable = piTableTmp;
+	else
+		piTable = nullptr;
+	iSize = iCounter;
 	return *this;
 }
 
@@ -159,7 +200,56 @@ void CTable::vPrint()
 	}
 }
 
+bool CTable::isGoodPassword(string& tmpStr)
+{
+	cout << "Inserted new password: " << tmpStr << endl;
+	int length = tmpStr.length();
+	if (length < 6) {
+		cout << "Error: not enough symbols" << endl;
+		cout << "Need 6 and more, but you have only " << length << " symbols" << endl;
+		return false;
+	}
+	int isUpperCase = 0;
+	int isLowerCase = 0;
+	int errors = 0;
+	for (int i = 0; i < length; i++) {
+		int c = tmpStr[i];
+		if (islower(c))
+			isLowerCase++;
+		else if (isupper(c))
+			isUpperCase++;
+		else
+			errors++;
+	}
+	if (isUpperCase > 0 && isLowerCase > 0 && errors == 0)
+		return true;
+	else
+	{
+		if (isUpperCase == 0)
+			cout << "Error: must be one and more great letters" << endl;
+		if (isLowerCase == 0)
+			cout << "Error: must be one and more small letters" << endl;
+		if (errors > 0)
+			cout << "Error: must be only letters" << endl;
+		return false;
+	}
+
+}
+
+bool CTable::setPassword(string& tmpStr)
+{
+	if (isGoodPassword(tmpStr))
+	{
+		sPassword = tmpStr;
+		return true;
+	}
+	else
+		return false;
+
+}
+
 CTable::~CTable()
 {
 	cout << "Usuwam: " << sName << endl;
+	delete piTable;
 }
