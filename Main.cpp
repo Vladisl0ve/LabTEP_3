@@ -3,7 +3,6 @@
 #include <string>
 
 /*
-	Fix iOffer problem (check more details later)
 	Remove couts for testings
 
 */

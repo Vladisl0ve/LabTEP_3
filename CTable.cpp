@@ -184,7 +184,7 @@ void CTable::v_mod_tab(CTable cTab, int iNewSize)
 
 void CTable::vSetValueAt(int iOffset, int iNewVal)
 {
-	if (iOffset >= iSize) {
+	if (iOffset >= iSize || iOffset < 0) {
 		cout << "Error, value must be less than table's size" << endl;
 		cout << iOffset << " is greater than table's size (or equal to)" << endl;
 		return;
