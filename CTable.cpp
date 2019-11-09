@@ -69,6 +69,7 @@ CTable* CTable::pcClone() {
 
 CTable CTable::operator+(CTable& pcNewVal)
 {
+	CTable cTab;
 	int newSize = pcNewVal.iSize + iSize;
 	int* piTableNew = new int[newSize];
 	for (int ii = 0; ii < iSize; ii++)
@@ -79,11 +80,10 @@ CTable CTable::operator+(CTable& pcNewVal)
 	{
 		piTableNew[ii] = pcNewVal.piTable[ii - iSize];
 	}
-	delete piTable;
-	piTable = piTableNew;
-	iSize = newSize;
-	sPassword = sPassword + pcNewVal.sPassword;
-	return *this;
+	cTab.piTable = piTableNew;
+	cTab.iSize = newSize;
+	cTab.sPassword = sPassword + pcNewVal.sPassword;
+	return cTab;
 }
 
 CTable CTable::operator*(CTable& pcNewVal)

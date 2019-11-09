@@ -19,10 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CFileErrCode.cpp" />
+    <ClCompile Include="CFileLastError.cpp" />
+    <ClCompile Include="CFileThrowEx.cpp" />
     <ClCompile Include="CTable.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CFileErrCode.h" />
+    <ClInclude Include="CFileLastError.h" />
+    <ClInclude Include="CFileThrowEx.h" />
     <ClInclude Include="CTable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
