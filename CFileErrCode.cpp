@@ -3,11 +3,15 @@
 
 CFileErrCode::CFileErrCode()
 {
-	this->pf_file = NULL;
+	pf_file = NULL;
 }
 
 CFileErrCode::CFileErrCode(string sFileName)
 {
+	if (sFileName.rfind(".") == string::npos)
+	{
+		throw - 1;
+	}
 	pf_file = fopen(sFileName.c_str(), "w+");
 }
 
@@ -29,10 +33,10 @@ bool CFileErrCode::bOpenFile(string sFileName)
 bool CFileErrCode::bCloseFile()
 {
 	if (pf_file == NULL)
-	{
 		return false;
-	}
+
 	fclose(pf_file);
+	pf_file = NULL;
 	return true;
 }
 

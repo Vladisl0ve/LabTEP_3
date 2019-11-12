@@ -4,6 +4,7 @@
 /*
 	Errors list:
 	-1: File is not implemented
+	-2: There is no file's type
 
 */
 
@@ -27,6 +28,10 @@ void CFileThrowEx::vOpenFile(string sFileName)
 {
 	try
 	{
+		if (sFileName.rfind(".") == string::npos)
+		{
+			throw - 2;
+		}
 		pf_file = fopen(sFileName.c_str(), "w+");
 		if (pf_file == NULL)
 			throw - 1;
@@ -43,8 +48,10 @@ void CFileThrowEx::vCloseFile()
 	{
 		if (pf_file == NULL)
 			throw - 1;
-		else
+		else {
 			fclose(pf_file);
+			pf_file = NULL;
+		}
 	}
 	catch (int e)
 	{
