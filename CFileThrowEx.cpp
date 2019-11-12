@@ -1,6 +1,11 @@
 #include "CFileThrowEx.h"
 #pragma warning (disable : 4996)
 
+/*
+	Errors list:
+	-1: File is not implemented
+
+*/
 
 CFileThrowEx::CFileThrowEx()
 {
@@ -23,6 +28,8 @@ void CFileThrowEx::vOpenFile(string sFileName)
 	try
 	{
 		pf_file = fopen(sFileName.c_str(), "w+");
+		if (pf_file == NULL)
+			throw - 1;
 	}
 	catch (int e)
 	{
@@ -34,7 +41,10 @@ void CFileThrowEx::vCloseFile()
 {
 	try
 	{
-		fclose(pf_file);
+		if (pf_file == NULL)
+			throw - 1;
+		else
+			fclose(pf_file);
 	}
 	catch (int e)
 	{
@@ -46,27 +56,20 @@ void CFileThrowEx::vPrintLine(string sText)
 {
 	try
 	{
-		throw fprintf(pf_file, sText.c_str());
+		if (pf_file == NULL)
+			throw - 1;
+		fprintf(pf_file, sText.c_str());
 	}
-	catch (exception e)
+	catch (int e)
 	{
-		cout << "HUY"<< '\n';
+		cout << "An exception # " << e << '\n';
 	}
 
 }
 
 void CFileThrowEx::vPrintManyLines(vector<string> sText)
 {
-	try
-	{
-		for (int i = 0; i < sText.size(); i++)
-		{
-			vPrintLine(sText[i]);
-		}
-	}
-	catch (int e)
-	{
-		cout << "An exception # " << e << '\n';
-	}
+	for (int i = 0; i < sText.size(); i++)
+		vPrintLine(sText[i]);
 
 }
