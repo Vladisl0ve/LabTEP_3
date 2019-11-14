@@ -30,6 +30,9 @@
     <ClCompile Include="CFileErrCode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CRange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CTable.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CFileErrCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

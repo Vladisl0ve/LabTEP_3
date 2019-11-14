@@ -24,12 +24,14 @@
     <ClCompile Include="CFileThrowEx.cpp" />
     <ClCompile Include="CTable.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="CRange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CFileErrCode.h" />
     <ClInclude Include="CFileLastError.h" />
     <ClInclude Include="CFileThrowEx.h" />
     <ClInclude Include="CTable.h" />
+    <ClInclude Include="CRange.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
